@@ -1,0 +1,33 @@
+server.port: 8080
+server.error.include-message: always
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: iam-service
+          uri: lb://iam-service
+          predicates:
+            - Path=/api/v1/authentication/**
+            - Path=/api/v1/users/**
+        - id: profiles-service
+          uri: lb://profiles-service
+          predicates:
+            - Path=/api/v1/profiles/**
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/
+      initialInstanceInfoReplicationIntervalSeconds: 5
+      registryFetchIntervalSeconds: 5
+      instance:
+      leaseRenewalIntervalInSeconds: 5
+      leaseExpirationDurationInSeconds: 5
+  instance:
+    hostname: localhost
