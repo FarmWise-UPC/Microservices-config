@@ -17,21 +17,33 @@ spring:
             - Path=/api/v1/appointments/**
             - Path=/api/v1/available_dates/**
             - Path=/api/v1/reviews/**
+            - Path=/appointments/v3/api-docs
+            - Path=/appointments/swagger-ui/**
+            
         - id: iam-service
           uri: lb://iam-service
           predicates:
             - Path=/api/v1/authentication/**
             - Path=/api/v1/roles/**
             - Path=/api/v1/users/**
+            - Path=/iam/v3/api-docs
+            - Path=/iam/swagger-ui/**
+
         - id: management-service
           uri: lb://management-service
           predicates:
             - Path=/api/v1/animals/**
             - Path=/api/v1/enclosures/**
+            - Path=/management/v3/api-docs
+            - Path=/management/swagger-ui/**
+
         - id: post-service
           uri: lb://post-service
           predicates:
             - Path=/api/v1/posts/**
+            - Path=/posts/v3/api-docs
+            - Path=/posts/swagger-ui/**
+
         - id: profile-service
           uri: lb://profile-service
           predicates:
@@ -39,7 +51,8 @@ spring:
             - Path=/api/v1/farmers/**
             - Path=/api/v1/notifications/**
             - Path=/api/v1/profiles/**
-
+            - Path=/profiles/v3/api-docs
+            - Path=/profiles/swagger-ui/**
 eureka:
   client:
     fetch-registry: true
