@@ -1,3 +1,13 @@
+spring:
+  application:
+    name: iam-service
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://iam-db:3306/iamdb?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: 12345678
+
 eureka:
   client:
     fetch-registry: true
@@ -6,3 +16,4 @@ eureka:
       default-zone: http://eureka-service:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
