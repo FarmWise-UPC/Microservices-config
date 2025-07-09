@@ -2,13 +2,16 @@ authorization:
   jwt:
     secret: ${JWT_SECRET}
     expiration:
-      days: 31
+      days: ${JWT_EXPIRATION_DAYS}
 eureka:
   client:
-    fetch-registry: true
-    register-with-eureka: true
     service-url:
       default-zone: http://eureka-service:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
+    status-page-url-path: /swagger-ui/index.html
